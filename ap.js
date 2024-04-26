@@ -11,18 +11,24 @@ app.use("/static", function(request, response){
 
 });
 app.get('/dynamic', (request, response) => {
-    const a = parseFloat(request.query.a);
-    const b = parseFloat(request.query.b);
-    const c = parseFloat(request.query.c);
+    const variables = ['a', 'b', 'c'];
+    let isValid = true;
 
-    if (isNaN(a),  isNaN(b),  isNaN(c)) {
+    for (let variable of variables) {
+        if (!(variable in request.query && !isNaN(parseFloat(request.query[variable])))) {
+            isValid = false;
+            break;
+        }
+    }
+
+    if (!isValid) {
         response.send("<h1>Error</h1>");
     } else {
-        const d = (a * b * c) / 3;
-        response.send(`<h1><strong>  Calculated </strong></h1> ${d}`)
+        const result = (parseFloat(request.query.a) * parseFloat(request.query.b) * parseFloat(request.query.c)) / 3;
+        response.send(`<h1><strong>Calculated</strong></h1> <p>${result}</p>`);
     }
 });
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+    console.log('Сервер запущен на порту 3000');
 });
