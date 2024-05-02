@@ -1,16 +1,22 @@
 {
-  "name": "helloapp",
+  "name": "hello11",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon a1.js", 
+    "start1":"node-telegram-bot-api"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "lodash": "^4.17.21",
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "config":"1.26.1",
+    "node-telegram-bot-api": "^0.65.1",
     "nodemon": "^3.1.0"
   },
-  "main": "app.js",
+  "main": "a1.js",
   "author": "Воронов Артём",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.6"
+  }
 }
