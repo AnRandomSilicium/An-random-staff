@@ -20,6 +20,11 @@ app.use(bodyParser.json());
 
 ///addItem///
 app.post('/addItem', (request, response) => {
+  pool.query(sql, data, function(err, results) {
+    if(err) console.log(err);
+    console.log(results);
+  });
+  const sql = "INSERT INTO items (id, name, description) VALUES(INT, VARCHAR, TEXT) ";
   connection.query(sql, user, function(err, results) {
     if(err) console.log(err);
     else console.log("Данные добавлены");
@@ -28,8 +33,12 @@ app.post('/addItem', (request, response) => {
   
 ///deleteItem///
 app.post('/deleteItem', (request, response) => {
-const sql = "DELETE items (id) VALUES (INT, VARCHAR,?)";
-connection.query(sql, Item)
+  pool.query(sql, data, function(err, results) {
+    if(err) console.log(err);
+    console.log(results);
+  });
+  const sql = "DELETE items (id) VALUES (INT, VARCHAR,?)";
+  connection.query(sql, Item)
           .then(result =>{
             console.log(result[0]);
           })
@@ -38,7 +47,7 @@ connection.query(sql, Item)
           });
         });
 ///getAllItems///
-app.post('/getAllItems', (request, response) => {
+  app.post('/getAllItems', (request, response) => {
   connection.query("SELECT * FROM items")
   .then(([rows, fields]) =>{
     console.log(rows);
@@ -49,7 +58,7 @@ app.post('/getAllItems', (request, response) => {
 });
 
 ///updateItem///
-app.post('/updateItem', (request, response) => {
+  app.post('/updateItem', (request, response) => {
   const { id, name, desc } = request.body;
   if (!id, !name,  !desc) {
     response.send(null); 
