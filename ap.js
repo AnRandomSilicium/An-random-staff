@@ -12,20 +12,16 @@ app.use("/static", function(request, response){
 });
 app.get('/dynamic', (request, response) => {
     const variables = ['a', 'b', 'c'];
-    let isValid = true;
 
     for (let variable of variables) {
-        if (!(variable in request.query && !isNaN(parseFloat(request.query[variable])))) {
-            isValid = false;
-            break;
+        if (!(request.query[variable] != null&& !isNaN(parseFloat(request.query[variable])))) {
+            response.send("<h1>Error</h1>");
+        
         }
-    }
-
-    if (!isValid) {
-        response.send("<h1>Error</h1>");
-    } else {
-        const result = (parseFloat(request.query.a) * parseFloat(request.query.b) * parseFloat(request.query.c)) / 3;
-        response.send(`<h1><strong>Calculated</strong></h1> <p>${result}</p>`);
+        else {
+            const result = (parseFloat(request.query.a) * parseFloat(request.query.b) * parseFloat(request.query.c)) / 3;
+            response.send(`<h1><strong>Calculated</strong></h1> <p>${result}</p>`);
+        }
     }
 });
 
