@@ -17,12 +17,12 @@ app.get('/dynamic', (request, response) => {
         if (!(request.query[variable] != null&& !isNaN(parseFloat(request.query[variable])))) {
             response.send("<h1>Error</h1>");
             return;
+        
         }
-else {
-    const result = (parseFloat(request.query.a) * parseFloat(request.query.b) * parseFloat(request.query.c)) / 3;
-    response.send(`<h1><strong>Calculated</strong></h1> <p>${result}</p>`);
+
     }
-    }
+        const result = (parseFloat(request.query.a) * parseFloat(request.query.b) * parseFloat(request.query.c)) / 3;
+        response.send(`<h1><strong>Calculated</strong></h1> <p>${result}</p>`);
 });
 
 app.listen(3000, () => {
