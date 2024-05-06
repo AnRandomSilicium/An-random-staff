@@ -1,7 +1,11 @@
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+const TelegramBot = require('node-telegram-bot-api');
+const token = '6813527987:AAGSIDjnmzPNScGS2TW6sWZAlK2Yb05Pj44';
+console.log('bot has been started ....');
 
+const bot = new TelegramBot (token, { polling: true}) 
 const app = express();
 const port = 3000;
 
